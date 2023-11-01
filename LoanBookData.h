@@ -2,6 +2,7 @@
 
 #include<iostream>
 #include<cstring>
+#include<map>
 using namespace std;
 
 class LoanBookData
@@ -19,7 +20,7 @@ public:
 
     void setBookData(string name, int code, string author, int year) {
         this->name = name;
-        this->code = code
+        this->code = code;
         this->author = author;
         this->year = year;
     }
@@ -28,6 +29,7 @@ public:
     void setCode(int code) { this->code = code; }
     void setAuthor(string author) { this->author = author; }
     void setYear(int year) { this->year = year; }
+    void setCount(int cnt) { this->loan_count = cnt; }
     void updateCount() { this->loan_count += 1; }
 
     string getName() { return name; }

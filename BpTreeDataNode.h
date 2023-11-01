@@ -2,6 +2,7 @@
 #define _BpTreeDataNode_H_
 
 #include "BpTreeNode.h"
+using namespace std;
 
 class BpTreeDataNode : public BpTreeNode
 {

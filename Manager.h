@@ -8,11 +8,15 @@ private:
 	char* cmd;
 	BpTree* bptree;
 	SelectionTree* stree;
-	BpTree* bptree;
+
 public:
 	Manager(int bpOrder)	//constructor
 	{
 		/* You must fill here */
+		bptree = new BpTree(&flog,bpOrder);
+		stree = new SelectionTree(&flog);
+		cmd = new char[256];
+
 	}
 
 

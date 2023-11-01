@@ -1,6 +1,8 @@
 #pragma once
 #include "LoanBookData.h"
 
+using namespace std;
+
 class BpTreeNode
 {
 private:

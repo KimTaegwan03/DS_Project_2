@@ -17,6 +17,7 @@ public:
 		stree = new SelectionTree(&flog);
 		cmd = new char[256];
 
+
 	}
 
 

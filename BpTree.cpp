@@ -3,13 +3,11 @@
 bool BpTree::Insert(LoanBookData* newData) {
 	
 	if(!root) {
-		BpTreeIndexNode* n_root = new BpTreeIndexNode();
 		BpTreeDataNode* n_data = new BpTreeDataNode();
 
-		n_root->insertIndexMap(newData->getName(),n_data);
 		n_data->insertDataMap(newData->getName(),newData);
 
-		root = n_root;
+		root = n_data;
 		
 		return 1;
 	}
@@ -64,24 +62,73 @@ bool BpTree::excessIndexNode(BpTreeNode* pIndexNode) {
 }
 
 void BpTree::splitDataNode(BpTreeNode* pDataNode) {
-	BpTreeDataNode* q = new BpTreeDataNode();
-	auto i = pDataNode->getDataMap()->begin();
-	i++;
-	
-	q->insertDataMap(i->first,i->second);
+	if(pDataNode != root){
+		BpTreeDataNode* q = new BpTreeDataNode();
+		auto i = pDataNode->getDataMap()->begin();
+		
+		for(int a = 0;a<order/2;a++){
+			i++;
+		}
 
-	pDataNode->getParent()->insertIndexMap(i->first,q);
+		// move to q node
+		for(int a = 0;a<=order/2;a++){
+			q->insertDataMap(i->first,i->second);
+			i++;
+		}
 
-	pDataNode->deleteMap(i->first);
+		while(pDataNode->getDataMap()->size()>order/2){
+			pDataNode->deleteMap(pDataNode->getDataMap()->rbegin()->first);
+		}
 
-	i++;
+		pDataNode->getParent()->insertIndexMap(q->getDataMap()->begin()->first,q);
 
-	q->insertDataMap(i->first,i->second);
+		q->setParent(pDataNode->getParent());
 
-	pDataNode->deleteMap(i->first);
+		q->setNext(pDataNode->getNext());
+		if(pDataNode->getNext())
+			pDataNode->getNext()->setPrev(q);
+		pDataNode->setNext(q);
+		q->setPrev(pDataNode);
 
-	if(pDataNode->getParent()->getIndexMap()->size()>2){
-		splitIndexNode(pDataNode->getParent());
+
+		if(excessDataNode(pDataNode)){
+			splitIndexNode(pDataNode->getParent());
+		}
+	}
+	else{
+		BpTreeIndexNode* n_root = new BpTreeIndexNode();
+		BpTreeDataNode* q = new BpTreeDataNode();
+		auto i = pDataNode->getDataMap()->begin();
+		
+		for(int a = 0;a<order/2;a++){
+			i++;
+		}
+
+		// move to q node
+		for(int a = 0;a<=order/2;a++){
+			q->insertDataMap(i->first,i->second);
+			i++;
+		}
+
+		while(pDataNode->getDataMap()->size()>order/2){
+			pDataNode->deleteMap(pDataNode->getDataMap()->rbegin()->first);
+		}
+
+		n_root->insertIndexMap(q->getDataMap()->begin()->first,q);
+
+		n_root->setMostLeftChild(pDataNode);
+
+
+		pDataNode->setParent(n_root);
+		q->setParent(n_root);
+
+		q->setNext(pDataNode->getNext());
+		if(pDataNode->getNext())
+			pDataNode->getNext()->setPrev(q);
+		pDataNode->setNext(q);
+		q->setPrev(pDataNode);
+
+		root = n_root;
 	}
 	
 }
@@ -91,19 +138,32 @@ void BpTree::splitIndexNode(BpTreeNode* pIndexNode) {
 	if(pIndexNode != root){
 		BpTreeIndexNode* q = new BpTreeIndexNode();
 		auto i = pIndexNode->getIndexMap()->begin();
-		i++;
+
+		for(int a = 0;a<order/2;a++){
+			i++;
+		}
 
 		pIndexNode->getParent()->insertIndexMap(i->first,q);
 
 		q->setMostLeftChild(i->second);
 
-		pIndexNode->deleteMap(i->first);
-
 		i++;
 
-		q->insertIndexMap(i->first,i->second);
 
-		if(pIndexNode->getParent()->getIndexMap()->size()>2){
+		// move to q node
+		for(int a = 0;a<order/2;a++){
+			q->insertIndexMap(i->first,i->second);
+			i++;
+		}
+
+		while(pIndexNode->getDataMap()->size()>order/2){
+			pIndexNode->deleteMap(pIndexNode->getIndexMap()->rbegin()->first);
+		}
+
+		q->setParent(pIndexNode->getParent());
+
+
+		if(excessIndexNode(pIndexNode)){
 			splitIndexNode(pIndexNode->getParent());
 		}
 	}
@@ -111,22 +171,33 @@ void BpTree::splitIndexNode(BpTreeNode* pIndexNode) {
 		BpTreeIndexNode* n_root = new BpTreeIndexNode();
 		BpTreeIndexNode* q = new BpTreeIndexNode();
 		auto i = pIndexNode->getIndexMap()->begin();
-		i++;
-		n_root->setMostLeftChild(pIndexNode);
+		
+		for(int a = 0;a<order/2;a++){
+			i++;
+		}
 
 		n_root->insertIndexMap(i->first,q);
 
 		q->setMostLeftChild(i->second);
 
-		pIndexNode->deleteMap(i->first);
-
 		i++;
 
-		q->insertIndexMap(i->first,i->second);
+		// move to q node
+		for(int a = 0;a<order/2;a++){
+			q->insertIndexMap(i->first,i->second);
+			i++;
+		}
 
-		pIndexNode->deleteMap(i->first);
+		while(pIndexNode->getIndexMap()->size()>order/2){
+			pIndexNode->deleteMap(pIndexNode->getIndexMap()->rbegin()->first);
+		}
+
+		n_root->setMostLeftChild(pIndexNode);
 
 		root = n_root;
+
+		pIndexNode->setParent(n_root);
+		q->setParent(n_root);
 
 	}
 }

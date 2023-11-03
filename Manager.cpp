@@ -1,8 +1,12 @@
 #include "Manager.h"
+#include <cstdlib>
+
+using namespace std;
 
 void Manager::run(const char* command) 
 {
 	fin.open(command);
+	flog.open("log.txt",ios::app);
 	if(!fin)
 	{
 		flog << "File Open Error" << endl;
@@ -17,11 +21,16 @@ void Manager::run(const char* command)
 		if(!strcmp(cmd,"LOAD")){
 			LOAD();
 		}
+		else if(!strcmp(cmd,"PRINT_BP")){
+			PRINT_BP();
+		}
 
 
 
 
-	}	
+
+	}
+	flog.close();
 	fin.close();
 	return;
 }
@@ -45,7 +54,7 @@ bool Manager::LOAD()
 
 		p = strtok(NULL,"\t");
 
-		data->setCode(atoi(p));
+		data->setCode(atoi((const char*)p));
 
 		p = strtok(NULL,"\t");
 
@@ -53,11 +62,11 @@ bool Manager::LOAD()
 
 		p = strtok(NULL,"\t");
 
-		data->setYear(atoi(p));
+		data->setYear(atoi((const char*)p));
 
 		p = strtok(NULL,"\t");
 
-		data->setCount(atoi(p));
+		data->setCount(atoi((const char*)p));
 
 		bptree->Insert(data);
 
@@ -87,7 +96,22 @@ bool Manager::SEARCH_BP_RANGE(string s, string e)
 
 bool Manager::PRINT_BP() 
 {
-	
+	BpTreeNode* cur = bptree->getRoot();
+
+	while(cur->getMostLeftChild()){
+		cur = cur->getMostLeftChild();
+	}
+	flog<<"========PRINT_BP========\n";
+	while(cur){
+		for(auto iter = cur->getDataMap()->begin(); iter != cur->getDataMap()->end();iter++){
+			
+			flog<< iter->second->getName() << '/' << iter->second->getCode() << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';
+		
+		}
+		cur = cur->getNext();
+	}
+	flog<<"========================\n\n";
+	return 1;
 }
 
 bool Manager::PRINT_ST() 

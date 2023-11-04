@@ -12,28 +12,30 @@ bool BpTree::Insert(LoanBookData* newData) {
 		return 1;
 	}
 
-	BpTreeNode* cur = root;
+	BpTreeNode* cur = searchDataNode(newData->getName());
 
 	// Search BpTree for Data with Name
-	while(cur->getMostLeftChild()){
-		if(!cur->getIndexMap()->empty()){
-			BpTreeNode* j = cur->getMostLeftChild();
-			bool flag = 1;
-			for(map<string,BpTreeNode*>::iterator i = cur->getIndexMap()->begin();i!=cur->getIndexMap()->end();i++){
-				if(i->first > newData->getName()){
-					cur = j;
-					flag = 0;
-					break;
-				}
-				j = i->second;
-			}
 
-			// MostRightChild
-			if(flag){
-				cur = j;
-			}
-		}
-	}
+	// cur = searchDataNode(newData->getName())
+	// while(cur->getMostLeftChild()){
+	// 	if(!cur->getIndexMap()->empty()){
+	// 		BpTreeNode* j = cur->getMostLeftChild();
+	// 		bool flag = 1;
+	// 		for(map<string,BpTreeNode*>::iterator i = cur->getIndexMap()->begin();i!=cur->getIndexMap()->end();i++){
+	// 			if(i->first > newData->getName()){
+	// 				cur = j;
+	// 				flag = 0;
+	// 				break;
+	// 			}
+	// 			j = i->second;
+	// 		}
+
+	// 		// MostRightChild
+	// 		if(flag){
+	// 			cur = j;
+	// 		}
+	// 	}
+	// }
 
 	if(cur->getDataMap()->find(newData->getName()) != cur->getDataMap()->end()){
 		cur->getDataMap()->find(newData->getName())->second->updateCount();
@@ -49,6 +51,46 @@ bool BpTree::Insert(LoanBookData* newData) {
 	}
 
 	return true;
+}
+
+bool BpTree::Delete(string Data){
+	bool find = false;
+	BpTreeNode* cur = root;
+	BpTreeNode* j = NULL;
+
+	while(cur->getMostLeftChild()){
+		j = cur->getMostLeftChild();
+		bool flag = 1;
+		for(auto iter = cur->getIndexMap()->begin();iter != cur->getIndexMap()->end();iter++){
+			if(iter->first == Data) find = true;
+			if(iter->first > Data){
+				cur = j;
+				flag = 0;
+				break;
+			}
+			j = iter->second;
+		}
+
+		if(flag){
+			cur = j;
+		}
+	}
+
+	if(!find){
+		if(cur->getDataMap()->size() > 1){
+			cur->deleteMap(Data);
+		}
+		else{
+			BpTreeNode* sibling_next = cur->getNext();
+			BpTreeNode* sibling_prev = cur->getPrev();
+
+			if(sibling_next->getParent() == cur->getParent()){
+
+			}
+		}
+	}
+
+
 }
 
 bool BpTree::excessDataNode(BpTreeNode* pDataNode) {
@@ -205,13 +247,87 @@ void BpTree::splitIndexNode(BpTreeNode* pIndexNode) {
 BpTreeNode* BpTree::searchDataNode(string name) {
 	BpTreeNode* pCur = root;
 	
+	BpTreeNode* j = NULL;
+
+	while(pCur->getMostLeftChild()){
+		j = pCur->getMostLeftChild();
+		bool flag = 1;
+		for(auto iter = pCur->getIndexMap()->begin();iter != pCur->getIndexMap()->end();iter++){
+			if(iter->first > name){
+				pCur = j;
+				flag = 0;
+				break;
+			}
+			j = iter->second;
+		}
+
+		if(flag){
+			pCur = j;
+		}
+	}
 	return pCur;
 }
 
 bool BpTree::searchBook(string name) {
+	BpTreeNode* pCur = searchDataNode(name);
 
+	for(auto iter = pCur->getDataMap()->begin();iter != pCur->getDataMap()->end();iter++){
+		if(iter->first == name){
+			*fout<<"========SEARCH_BP========\n";
+			if(iter->second->getCode() != 0)
+				*fout<< iter->second->getName() << '/' << iter->second->getCode() << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';
+			else
+				*fout<< iter->second->getName() << '/' << "000" << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';
+			
+			*fout<<"==========================\n\n";
+			return 1;
+		}
+	}
+	return 0;
 }
 
 bool BpTree::searchRange(string start, string end) {
-	
+	BpTreeNode* pCur = root;
+	BpTreeNode* j = NULL;
+	bool flag = 1;
+
+	while(pCur->getMostLeftChild()){
+		j = pCur->getMostLeftChild();
+		for(auto iter = pCur->getIndexMap()->begin();iter != pCur->getIndexMap()->end();iter++){
+			if(iter->first[0] > start[0]){
+				pCur = j;
+				flag = 0;
+				break;
+			}
+			j = iter->second;
+		}
+
+		if(flag){
+			pCur = j;
+		}
+	}
+
+	if(pCur->getDataMap()->begin()->first[0] < start[0]){
+		return 0;
+	}
+	*fout<<"========SEARCH_BP========\n";
+	while(pCur){
+		for(auto iter = pCur->getDataMap()->begin();iter!=pCur->getDataMap()->end();iter++){
+			if(iter->first[0] >= start[0] && end[0] >= iter->first[0]){
+				flag = 1;
+				if(iter->second->getCode() != 0)
+					*fout<< iter->second->getName() << '/' << iter->second->getCode() << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';
+				else
+					*fout<< iter->second->getName() << '/' << "000" << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';
+			
+			}
+			else{
+				*fout<<"==========================\n\n";
+				return 1;
+			}
+		}
+		pCur = pCur->getNext();
+	}
+	*fout<<"==========================\n\n";
+	return 1;
 }

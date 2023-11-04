@@ -18,16 +18,40 @@ void Manager::run(const char* command)
 
 		fin.getline(cmd,256);
 
-		if(!strcmp(cmd,"LOAD")){
+		char* p = strtok(cmd,"\t");
+
+		if(!strcmp(p,"LOAD")){
 			LOAD();
 		}
-		else if(!strcmp(cmd,"PRINT_BP")){
+		else if(!strcmp(p,"PRINT_BP")){
 			PRINT_BP();
 		}
+		else if(!strcmp(p,"SEARCH_BP")){
+			p = strtok(NULL,"");
+			int len = strlen(p);
+			int tab_cnt = 0;
+			for(int i = 0;i<len;i++){
+				if(p[i]=='\t') tab_cnt++;
+			}
+			if(tab_cnt == 0){
+				SEARCH_BP_BOOK(p);
+			}
+			else if(tab_cnt == 1){
+				// Allocate char[2] make start end and do it
+				char start[2];
+				char end[2];
 
+				start[0] = p[0];
+				start[1] = '\0';
 
+				end[0] = p[2];
+				end[1] = '\0';
 
+				SEARCH_BP_RANGE(start,end);
+			}
+			
 
+		}
 
 	}
 	flog.close();
@@ -86,12 +110,16 @@ bool Manager::ADD()
 
 bool Manager::SEARCH_BP_BOOK(string book) 
 {
-	
+	if(!bptree->searchBook(book)){
+		printErrorCode(300);
+	}
 }
 
 bool Manager::SEARCH_BP_RANGE(string s, string e) 
 {
-	
+	if(!bptree->searchRange(s,e)){
+		printErrorCode(300);
+	}
 }
 
 bool Manager::PRINT_BP() 
@@ -104,9 +132,11 @@ bool Manager::PRINT_BP()
 	flog<<"========PRINT_BP========\n";
 	while(cur){
 		for(auto iter = cur->getDataMap()->begin(); iter != cur->getDataMap()->end();iter++){
+			if(iter->second->getCode() != 0)
+				flog<< iter->second->getName() << '/' << iter->second->getCode() << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';
+			else
+				flog<< iter->second->getName() << '/' << "000" << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';
 			
-			flog<< iter->second->getName() << '/' << iter->second->getCode() << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';
-		
 		}
 		cur = cur->getNext();
 	}

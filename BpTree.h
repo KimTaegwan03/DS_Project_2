@@ -21,6 +21,7 @@ public:
 	~BpTree();
 	/* essential */
 	bool		Insert(LoanBookData* newData);
+	bool		Delete(string Data);
 	bool		excessDataNode(BpTreeNode* pDataNode);
 	bool		excessIndexNode(BpTreeNode* pIndexNode);
 	void		splitDataNode(BpTreeNode* pDataNode);

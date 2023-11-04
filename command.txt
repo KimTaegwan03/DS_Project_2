@@ -1,2 +1,4 @@
 LOAD
 PRINT_BP
+SEARCH_BP	aaaaa
+SEARCH_BP	f	p

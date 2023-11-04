@@ -6,10 +6,12 @@ class LoanBookHeap
 {
 private:
     LoanBookHeapNode* root;
+    LoanBookHeapNode* last;
 
 public:
     LoanBookHeap() {
         this->root = NULL;
+        this->last - NULL;
     }
     ~LoanBookHeap() {
 

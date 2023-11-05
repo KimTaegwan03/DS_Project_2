@@ -294,7 +294,7 @@ bool BpTree::searchRange(string start, string end) {
 	while(pCur->getMostLeftChild()){
 		j = pCur->getMostLeftChild();
 		for(auto iter = pCur->getIndexMap()->begin();iter != pCur->getIndexMap()->end();iter++){
-			if(iter->first[0] > start[0]){
+			if(iter->first > start){
 				pCur = j;
 				flag = 0;
 				break;
@@ -307,13 +307,13 @@ bool BpTree::searchRange(string start, string end) {
 		}
 	}
 
-	if(pCur->getDataMap()->begin()->first[0] < start[0]){
+	if(pCur->getDataMap()->begin()->first < start){
 		return 0;
 	}
 	*fout<<"========SEARCH_BP========\n";
 	while(pCur){
 		for(auto iter = pCur->getDataMap()->begin();iter!=pCur->getDataMap()->end();iter++){
-			if(iter->first[0] >= start[0] && end[0] >= iter->first[0]){
+			if(iter->first >= start && end >= iter->first){
 				flag = 1;
 				if(iter->second->getCode() != 0)
 					*fout<< iter->second->getName() << '/' << iter->second->getCode() << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';

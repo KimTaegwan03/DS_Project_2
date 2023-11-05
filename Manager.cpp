@@ -6,7 +6,7 @@ using namespace std;
 void Manager::run(const char* command) 
 {
 	fin.open(command);
-	flog.open("log.txt",ios::app);
+	flog.open("log.txt");
 	if(!fin)
 	{
 		flog << "File Open Error" << endl;
@@ -18,7 +18,7 @@ void Manager::run(const char* command)
 
 		fin.getline(cmd,256);
 
-		char* p = strtok(cmd,"\t");
+		char* p = strtok(cmd,"\t ");
 
 		if(!strcmp(p,"LOAD")){
 			LOAD();
@@ -30,24 +30,22 @@ void Manager::run(const char* command)
 			p = strtok(NULL,"");
 			int len = strlen(p);
 			int tab_cnt = 0;
+			char* end = 0;
 			for(int i = 0;i<len;i++){
-				if(p[i]=='\t') tab_cnt++;
+				if(p[i]=='\t') {
+					tab_cnt++;
+					p[i] = '\0';
+					end = &p[i+1];
+				}
 			}
 			if(tab_cnt == 0){
 				SEARCH_BP_BOOK(p);
 			}
 			else if(tab_cnt == 1){
-				// Allocate char[2] make start end and do it
-				char start[2];
-				char end[2];
-
-				start[0] = p[0];
-				start[1] = '\0';
-
-				end[0] = p[2];
-				end[1] = '\0';
-
-				SEARCH_BP_RANGE(start,end);
+				SEARCH_BP_RANGE(p,end);
+			}
+			else{
+				printErrorCode(300);
 			}
 			
 

@@ -9,33 +9,25 @@ class SelectionTree
 private:
     SelectionTreeNode* root;
     ofstream* fout;
-    SelectionTreeNode* winner;
-
-    //LoanBookHeap* heap[8];
+    SelectionTreeNode winner[7];
+    LoanBookHeap heap[8];
 
 public:
     SelectionTree(ofstream* fout) {
         this->root = NULL;
         this->fout = fout;
 
-        // for(int i = 0;i<8;i++){
-        //     heap[i] = new LoanBookHeap();
-        // }
-
         // int k = 8;
-
-        // winner = new SelectionTreeNode[k-1];
-
         // int j = 7;
 
         // for(int i = k-2;i>=(k-1)/2;i--){
-        //     if(heap[j]->getRoot()->getBookData()->getName()>heap[j-1]->getRoot()->getBookData()->getName()) {
-        //         winner[i].setBookData(heap[j-1]->getRoot()->getBookData());
-        //         winner[i].setHeap(heap[j-1]);
+        //     if(heap[j].getRoot()->getBookData()->getName()>heap[j-1].getRoot()->getBookData()->getName()) {
+        //         winner[i].setBookData(heap[j-1].getRoot()->getBookData());
+        //         winner[i].setHeap(&heap[j-1]);
         //     }
         //     else{
-        //         winner[i].setBookData(heap[j]->getRoot()->getBookData());
-        //         winner[i].setHeap(heap[j]);
+        //         winner[i].setBookData(heap[j].getRoot()->getBookData());
+        //         winner[i].setHeap(&heap[j]);
         //     }
         //     j-=2;
         // }

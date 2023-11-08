@@ -118,16 +118,7 @@ bool Manager::LOAD()
 
 		data->setCount(atoi((const char*)p));
 
-		
-
-		if(!bptree->Insert(data)){
-			LoanBookData* fullbook = bptree->searchDataNode(data->getName())->getDataMap()->find(data->getName())->second;
-			//bptree->Delete();
-			stree->Insert(fullbook);
-			delete data;
-			
-		}
-		
+		bptree->Insert(data,stree);
 		
 	}
 	printSuccessCode("LOAD");
@@ -164,13 +155,7 @@ bool Manager::ADD()
 		flog<<data->getName()<<'/'<<data->getCode()<<'/'<<data->getAuthor()<<'/'<<data->getYear()<<'\n';
 	flog<<"====================\n\n";
 
-	if(!bptree->Insert(data)){
-		LoanBookData* fullbook = bptree->searchDataNode(data->getName())->getDataMap()->find(data->getName())->second;
-		//bptree->Delete();
-		stree->Insert(fullbook);
-		delete data;
-		
-	}
+	bptree->Insert(data,stree);
 
 	return true;
 }

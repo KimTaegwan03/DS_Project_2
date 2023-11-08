@@ -1,6 +1,6 @@
 #pragma once
 #include "SelectionTreeNode.h"
-
+#include <queue>
 #include <fstream>
 #include <iostream>
 
@@ -34,6 +34,8 @@ public:
 
     }
     ~SelectionTree() {
+        
+        delete[] root;
         
     }
 

@@ -3,76 +3,122 @@ Success
 =======================
 
 ========PRINT_BP========
-Brave New World/100/Aldous Huxley/1932/2
-Crime and Punishment/200/Fyodor Dostoevsky/1866/1
-Gone with the Wind/500/Margaret Mitchell/1936/1
-Harry Potter/500/J.K. Rowling/1997/1
-Moby-Dick/200/Herman Melville/1851/2
-Pride and Prejudice/100/Jane Austen/1813/0
-The Alchemist/100/Paulo Coelho/1988/0
-The Catcher in the Rye/300/J.D. Salinger/1951/1
-The Da Vinci Code/500/Dan Brown/2003/1
-The Girl with the Dragon Tattoo/600/Stieg Larsson/2005/1
-The Grapes of Wrath/000/John Steinbeck/1939/2
-The Hitchhiker's Guide to the Galaxy/700/Douglas Adams/1979/0
-The Hobbit/000/J.R.R. Tolkien/1937/0
-The Hunger Games/300/Suzanne Collins/2008/2
-The Lord of the Rings/400/J.R.R. Tolkien/1954/1
-The Road/000/Cormac McCarthy/2006/1
-The Shining/400/Stephen King/1977/3
-To Kill a Mockingbird/200/Harper Lee/1960/0
-To the Lighthouse/700/Virginia Woolf/1927/1
+a/500/abcd/2022/1
+ab/500/abcd/2022/1
+b/500/abcd/2022/1
+bc/500/abcd/2022/1
+c/500/abcd/2022/1
+cd/500/abcd/2022/1
+d/500/abcd/2022/1
+de/500/abcd/2022/1
+e/500/abcd/2022/1
+ef/500/abcd/2022/1
+f/500/abcd/2022/1
+fg/500/abcd/2022/1
+g/500/abcd/2022/1
+gh/500/abcd/2022/1
+h/500/abcd/2022/1
+hi/500/abcd/2022/1
+i/500/abcd/2022/1
+ij/500/abcd/2022/1
+j/500/abcd/2022/1
+jk/500/abcd/2022/1
+k/500/abcd/2022/1
+kl/500/abcd/2022/1
+l/500/abcd/2022/1
+lm/500/abcd/2022/1
+m/500/abcd/2022/1
+mn/500/abcd/2022/1
+n/500/abcd/2022/1
+no/500/abcd/2022/1
+o/500/abcd/2022/1
+op/500/abcd/2022/1
+p/500/abcd/2022/1
+pq/500/abcd/2022/1
+q/500/abcd/2022/1
+qr/500/abcd/2022/1
+r/500/abcd/2022/1
+rs/500/abcd/2022/1
+s/500/abcd/2022/1
+st/500/abcd/2022/1
+t/500/abcd/2022/1
+tu/500/abcd/2022/1
+u/500/abcd/2022/1
+uv/500/abcd/2022/1
+v/500/abcd/2022/1
+vw/500/abcd/2022/1
+w/500/abcd/2022/1
+wx/500/abcd/2022/1
+x/500/abcd/2022/1
+xy/500/abcd/2022/1
+y/500/abcd/2022/1
+za/500/abcd/2022/1
 ========================
 
+========SEARCH_BP========
+a/500/abcd/2022/1
+ab/500/abcd/2022/1
+b/500/abcd/2022/1
+bc/500/abcd/2022/1
+c/500/abcd/2022/1
+cd/500/abcd/2022/1
+d/500/abcd/2022/1
+de/500/abcd/2022/1
+e/500/abcd/2022/1
+ef/500/abcd/2022/1
+==========================
+
 ========ADD========
-Harry Potter/500/J.K. Rowling/1997
+ab/500/abcd/2022
 ====================
 
 ========ADD========
-The Da Vinci Code/500/Dan Brown/2003
+bc/500/abcd/2022
 ====================
 
 ========ADD========
-To the Lighthouse/700/Virginia Woolf/1927
+cd/500/abcd/2022
 ====================
 
-========PRINT_BP========
-Brave New World/100/Aldous Huxley/1932/2
-Crime and Punishment/200/Fyodor Dostoevsky/1866/1
-Gone with the Wind/500/Margaret Mitchell/1936/1
-Harry Potter/500/J.K. Rowling/1997/2
-Moby-Dick/200/Herman Melville/1851/2
-Pride and Prejudice/100/Jane Austen/1813/0
-The Alchemist/100/Paulo Coelho/1988/0
-The Catcher in the Rye/300/J.D. Salinger/1951/1
-The Da Vinci Code/500/Dan Brown/2003/2
-The Girl with the Dragon Tattoo/600/Stieg Larsson/2005/1
-The Grapes of Wrath/000/John Steinbeck/1939/2
-The Hitchhiker's Guide to the Galaxy/700/Douglas Adams/1979/0
-The Hobbit/000/J.R.R. Tolkien/1937/0
-The Hunger Games/300/Suzanne Collins/2008/2
-The Lord of the Rings/400/J.R.R. Tolkien/1954/1
-The Road/000/Cormac McCarthy/2006/1
-The Shining/400/Stephen King/1977/3
-To Kill a Mockingbird/200/Harper Lee/1960/0
-To the Lighthouse/700/Virginia Woolf/1927/2
-========================
+========ADD========
+de/500/abcd/2022
+====================
+
+========ADD========
+ef/500/abcd/2022
+====================
+
+========SEARCH_BP========
+a/500/abcd/2022/1
+b/500/abcd/2022/1
+c/500/abcd/2022/1
+d/500/abcd/2022/1
+e/500/abcd/2022/1
+==========================
 
 ========PRINT_ST========
-Harry Potter/500/J.K. Rowling/1997/2
-The Da Vinci Code/500/Dan Brown/2003/2
-=========================
-
-========PRINT_ST========
-To the Lighthouse/700/Virginia Woolf/1927/2
+ab/500/abcd/2022/2
+bc/500/abcd/2022/2
+cd/500/abcd/2022/2
+de/500/abcd/2022/2
+ef/500/abcd/2022/2
 =========================
 
 ========DELETE========
 Success
 =======================
 
+========DELETE========
+Success
+=======================
+
+========DELETE========
+Success
+=======================
+
 ========PRINT_ST========
-The Da Vinci Code/500/Dan Brown/2003/2
+de/500/abcd/2022/2
+ef/500/abcd/2022/2
 =========================
 
 ========EXIT========

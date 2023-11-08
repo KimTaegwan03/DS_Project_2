@@ -17,7 +17,7 @@ public:
         this->pParent = NULL;
     }
     ~LoanBookHeapNode() {
-
+       
     }
 
     void setBookData(LoanBookData* data) {this->pData = data; }

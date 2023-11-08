@@ -1,11 +1,15 @@
 LOAD
 PRINT_BP
-ADD	Harry Potter	500	J.K. Rowling	1997
-ADD	The Da Vinci Code	500	Dan Brown	2003
-ADD	To the Lighthouse	700	Virginia Woolf	1927
-PRINT_BP
+SEARCH_BP	a	e
+ADD	ab	500	abcd	2022
+ADD	bc	500	abcd	2022
+ADD	cd	500	abcd	2022
+ADD	de	500	abcd	2022
+ADD	ef	500	abcd	2022
+SEARCH_BP	a	e
 PRINT_ST	500
-PRINT_ST	700
+DELETE
+DELETE
 DELETE
 PRINT_ST	500
 EXIT

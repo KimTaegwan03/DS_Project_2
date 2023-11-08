@@ -89,10 +89,13 @@ bool LoanBookHeap::Insert(LoanBookData* data) {
 bool LoanBookHeap::Delete(){
 
     if(size == 1){
+        delete root->getBookData();
         delete root;
         root = 0;
         return 1;
     }
+
+    delete root->getBookData();
 
     LoanBookHeapNode* cur = root;
     LoanBookHeapNode* pre = NULL;

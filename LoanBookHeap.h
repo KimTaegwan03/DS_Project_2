@@ -1,12 +1,12 @@
 #pragma once
 #include "LoanBookData.h"
 #include "LoanBookHeapNode.h"
+#include <queue>
 
 class LoanBookHeap
 {
 private:
     LoanBookHeapNode* root;
-    vector<LoanBookHeapNode*> heapArr;
     int size;
 
 public:
@@ -15,7 +15,20 @@ public:
         this->size = 0;
     }
     ~LoanBookHeap() {
+        queue<LoanBookHeapNode*> q;
+        if(root)
+            q.push(root);
 
+        while(!q.empty()){
+            LoanBookHeapNode* fr = q.front();
+            if(fr->getLeftChild()) q.push(fr->getLeftChild());
+            if(fr->getRightChild()) q.push(fr->getRightChild());
+
+            q.pop();
+
+            delete fr->getBookData();
+            delete fr;
+        }
     }
     
     void increaseSize() {size++;}

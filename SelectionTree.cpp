@@ -20,6 +20,8 @@ bool SelectionTree::Delete() {
     root->getHeap()->Delete();
 
     reStruct();
+
+    return 1;
 }
 
 bool SelectionTree::printBookData(int bookCode) {

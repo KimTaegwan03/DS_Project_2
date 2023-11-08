@@ -68,7 +68,16 @@ void Manager::run(const char* command)
 			
 
 		}
-
+		else if(!strcmp(p,"DELETE")){
+			if(stree->Delete())
+				printSuccessCode("DELETE");
+			else
+				printErrorCode(600);
+		}
+		else if(!strcmp(p,"EXIT")){
+			printSuccessCode("EXIT");
+			break;
+		}
 	}
 	flog.close();
 	fin.close();
@@ -121,7 +130,7 @@ bool Manager::LOAD()
 		
 		
 	}
-	printSuccessCode();
+	printSuccessCode("LOAD");
 
 	return true;
 }
@@ -214,7 +223,7 @@ bool Manager::PRINT_ST(int code)
 
 bool Manager::DELETE() 
 {
-
+	printSuccessCode("DELETE");
 }
 
 void Manager::printErrorCode(int n) {				//ERROR CODE PRINT
@@ -223,8 +232,8 @@ void Manager::printErrorCode(int n) {				//ERROR CODE PRINT
 	flog << "=======================" << endl << endl;
 }
 
-void Manager::printSuccessCode() {//SUCCESS CODE PRINT 
-	flog << "========LOAD========" << endl;
+void Manager::printSuccessCode(string command) {//SUCCESS CODE PRINT 
+	flog << "========"<<command<<"========" << endl;
 	flog << "Success" << endl;
 	flog << "=======================" << endl << endl;
 }

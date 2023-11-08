@@ -67,3 +67,15 @@ The Da Vinci Code/500/Dan Brown/2003/2
 To the Lighthouse/700/Virginia Woolf/1927/2
 =========================
 
+========DELETE========
+Success
+=======================
+
+========PRINT_ST========
+The Da Vinci Code/500/Dan Brown/2003/2
+=========================
+
+========EXIT========
+Success
+=======================
+

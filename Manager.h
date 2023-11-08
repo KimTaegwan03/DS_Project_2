@@ -46,7 +46,7 @@ public:
 	bool DELETE();
 
 	void printErrorCode(int n);
-	void printSuccessCode();
+	void printSuccessCode(string command);
 
 };
 

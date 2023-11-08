@@ -24,6 +24,9 @@ public:
 	~Manager()//destructor
 	{
 		/* You must fill here */
+		delete bptree;
+		delete stree;
+		delete[] cmd;
 	}
 
 	ifstream fin;
@@ -38,7 +41,7 @@ public:
 	bool SEARCH_BP_RANGE(string start, string end);
 
 	bool PRINT_BP();
-	bool PRINT_ST();
+	bool PRINT_ST(int code);
 
 	bool DELETE();
 

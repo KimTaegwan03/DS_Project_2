@@ -1,26 +1,19 @@
-uuuuu	600	uuu	1999	0
-ooooo	500	ooo	1999	0
-lllll	000	lll	1999	0
-kkkkk	100	kkk	1999	0
-mmmmm	600	mmm	1999	0
-vvvvv	700	vvv	1999	0
-jjjjj	100	jjj	1999	0
-ttttt	300	ttt	1999	0
-qqqqq	700	qqq	1999	0
-rrrrr	100	rrr	1999	0
-wwwww	300	www	1999	0
-hhhhh	500	hhh	1999	0
-fffff	700	fff	1999	0
-zzzzz	300	zzz	1999	0
-nnnnn	500	nnn	1999	0
-xxxxx	700	xxx	1999	0
-sssss	300	sss	1999	0
-ddddd	200	ddd	1999	0
-iiiii	700	iii	1999	0
-ggggg	500	ggg	1999	0
-aaaaa	100	aaa	1999	0
-bbbbb	100	bbb	1999	0
-yyyyy	000	yyy	1999	0
-eeeee	000	eee	1999	0
-ppppp	100	ppp	1999	0
-ccccc	200	ccc	1999	0
+To Kill a Mockingbird	200	Harper Lee	1960	0
+Pride and Prejudice	100	Jane Austen	1813	0
+The Catcher in the Rye	300	J.D. Salinger	1951	1
+The Lord of the Rings	400	J.R.R. Tolkien	1954	1
+The Hunger Games	300	Suzanne Collins	2008	2
+The Da Vinci Code	500	Dan Brown	2003	1
+Harry Potter	500	J.K. Rowling	1997	1
+The Hobbit	000	J.R.R. Tolkien	1937	0
+To the Lighthouse	700	Virginia Woolf	1927	1
+Brave New World	100	Aldous Huxley	1932	2
+The Shining	400	Stephen King	1977	3
+Moby-Dick	200	Herman Melville	1851	2
+The Road	000	Cormac McCarthy	2006	1
+Gone with the Wind	500	Margaret Mitchell	1936	1
+The Alchemist	100	Paulo Coelho	1988	0
+The Grapes of Wrath	000	John Steinbeck	1939	2
+The Hitchhiker's Guide to the Galaxy	700	Douglas Adams	1979	0
+The Girl with the Dragon Tattoo	600	Stieg Larsson	2005	1
+Crime and Punishment	200	Fyodor Dostoevsky	1866	1

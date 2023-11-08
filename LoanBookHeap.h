@@ -30,4 +30,5 @@ public:
     bool Delete();
 
     void initArr(LoanBookHeapNode** heapArr,LoanBookHeapNode* cur,int index);
+    LoanBookHeap* deepCopy();
 };

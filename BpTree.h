@@ -12,16 +12,17 @@ private:
 	BpTreeNode* root;
 	int			order;		// m children
 	ofstream* fout;
+
 public:
 	BpTree(ofstream *fout, int order = 3) {
 		root = NULL;
 		this->order = order;
 		this->fout = fout;
 	}
-	~BpTree();
+	~BpTree(){};
 	/* essential */
 	bool		Insert(LoanBookData* newData);
-	bool		Delete(string Data);
+	bool		Delete(string name);
 	bool		excessDataNode(BpTreeNode* pDataNode);
 	bool		excessIndexNode(BpTreeNode* pIndexNode);
 	void		splitDataNode(BpTreeNode* pDataNode);
@@ -32,6 +33,7 @@ public:
 	bool searchBook(string name);
 	bool searchRange(string start, string end);
 
+	
 };
 
 #endif

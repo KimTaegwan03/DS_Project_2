@@ -14,31 +14,34 @@ bool BpTree::Insert(LoanBookData* newData) {
 
 	BpTreeNode* cur = searchDataNode(newData->getName());
 
-	// Search BpTree for Data with Name
-
-	// cur = searchDataNode(newData->getName())
-	// while(cur->getMostLeftChild()){
-	// 	if(!cur->getIndexMap()->empty()){
-	// 		BpTreeNode* j = cur->getMostLeftChild();
-	// 		bool flag = 1;
-	// 		for(map<string,BpTreeNode*>::iterator i = cur->getIndexMap()->begin();i!=cur->getIndexMap()->end();i++){
-	// 			if(i->first > newData->getName()){
-	// 				cur = j;
-	// 				flag = 0;
-	// 				break;
-	// 			}
-	// 			j = i->second;
-	// 		}
-
-	// 		// MostRightChild
-	// 		if(flag){
-	// 			cur = j;
-	// 		}
-	// 	}
-	// }
-
 	if(cur->getDataMap()->find(newData->getName()) != cur->getDataMap()->end()){
 		cur->getDataMap()->find(newData->getName())->second->updateCount();
+		LoanBookData* data = cur->getDataMap()->find(newData->getName())->second;
+		if(data->getCode() == 0 && data->getLoanCount() >= 3){
+			return 0;
+		}
+		else if(data->getCode() == 100 && data->getLoanCount() >= 3){
+			return 0;
+		}
+		else if(data->getCode() == 200 && data->getLoanCount() >= 3){
+			return 0;
+		}
+		else if(data->getCode() == 300 && data->getLoanCount() >= 4){
+			return 0;
+		}
+		else if(data->getCode() == 400 && data->getLoanCount() >= 4){
+			return 0;
+		}
+		else if(data->getCode() == 500 && data->getLoanCount() >= 2){
+			return 0;
+		}
+		else if(data->getCode() == 600 && data->getLoanCount() >= 2){
+			return 0;
+		}
+		else if(data->getCode() == 700 && data->getLoanCount() >= 2){
+			return 0;
+		}
+		delete newData;
 		return 1;
 	}
 
@@ -53,44 +56,9 @@ bool BpTree::Insert(LoanBookData* newData) {
 	return true;
 }
 
-bool BpTree::Delete(string Data){
-	bool find = false;
-	BpTreeNode* cur = root;
-	BpTreeNode* j = NULL;
+bool BpTree::Delete(string name){
 
-	while(cur->getMostLeftChild()){
-		j = cur->getMostLeftChild();
-		bool flag = 1;
-		for(auto iter = cur->getIndexMap()->begin();iter != cur->getIndexMap()->end();iter++){
-			if(iter->first == Data) find = true;
-			if(iter->first > Data){
-				cur = j;
-				flag = 0;
-				break;
-			}
-			j = iter->second;
-		}
-
-		if(flag){
-			cur = j;
-		}
-	}
-
-	if(!find){
-		if(cur->getDataMap()->size() > 1){
-			cur->deleteMap(Data);
-		}
-		else{
-			BpTreeNode* sibling_next = cur->getNext();
-			BpTreeNode* sibling_prev = cur->getPrev();
-
-			if(sibling_next->getParent() == cur->getParent()){
-
-			}
-		}
-	}
-
-
+	
 }
 
 bool BpTree::excessDataNode(BpTreeNode* pDataNode) {

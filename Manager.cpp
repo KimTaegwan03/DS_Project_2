@@ -18,13 +18,31 @@ void Manager::run(const char* command)
 
 		fin.getline(cmd,256);
 
+		int cnt = strlen(cmd);
+
 		char* p = strtok(cmd,"\t ");
 
 		if(!strcmp(p,"LOAD")){
 			LOAD();
 		}
+		else if(!strcmp(p,"ADD")){
+			int blank = 0;
+			for(int i = 0;i<cnt;i++){
+				if(cmd[i] == '\t'){
+					blank++;
+				}
+			}
+			if(blank == 3)
+				ADD();
+			else
+				printErrorCode(200);
+		}
 		else if(!strcmp(p,"PRINT_BP")){
 			PRINT_BP();
+		}
+		else if(!strcmp(p,"PRINT_ST")){
+			p = strtok(NULL,"\t ");
+			PRINT_ST(atoi(p));
 		}
 		else if(!strcmp(p,"SEARCH_BP")){
 			p = strtok(NULL,"");
@@ -67,6 +85,7 @@ bool Manager::LOAD()
 	}
 	while(!fbook.eof()){
 		char* p;
+		int code;
 		LoanBookData* data = new LoanBookData();
 		fbook.getline(cmd,256);
 
@@ -76,7 +95,7 @@ bool Manager::LOAD()
 
 		p = strtok(NULL,"\t");
 
-		data->setCode(atoi((const char*)p));
+		data->setCode(code = atoi((const char*)p));
 
 		p = strtok(NULL,"\t");
 
@@ -90,19 +109,60 @@ bool Manager::LOAD()
 
 		data->setCount(atoi((const char*)p));
 
-		bptree->Insert(data);
+		
 
+		if(!bptree->Insert(data)){
+			LoanBookData* fullbook = bptree->searchDataNode(data->getName())->getDataMap()->find(data->getName())->second;
+			//bptree->Delete();
+			stree->Insert(fullbook);
+			delete data;
+			
+		}
+		
+		
 	}
-
-
-
+	printSuccessCode();
 
 	return true;
 }
 
 bool Manager::ADD()
 {
+	LoanBookData* data = new LoanBookData();
 	
+	char* p = strtok(NULL,"\t");	//name
+
+	data->setName(p);
+
+	p = strtok(NULL,"\t");
+
+	data->setCode(atoi((const char*)p));
+
+	p = strtok(NULL,"\t");
+
+	data->setAuthor(p);
+
+	p = strtok(NULL,"\t");
+
+	data->setYear(atoi((const char*)p));
+
+	data->setCount(0);
+
+	flog<<"========ADD========\n";
+	if(data->getCode() == 0)
+		flog<<data->getName()<<'/'<<"000"<<'/'<<data->getAuthor()<<'/'<<data->getYear()<<'\n';
+	else
+		flog<<data->getName()<<'/'<<data->getCode()<<'/'<<data->getAuthor()<<'/'<<data->getYear()<<'\n';
+	flog<<"====================\n\n";
+
+	if(!bptree->Insert(data)){
+		LoanBookData* fullbook = bptree->searchDataNode(data->getName())->getDataMap()->find(data->getName())->second;
+		//bptree->Delete();
+		stree->Insert(fullbook);
+		delete data;
+		
+	}
+
 	return true;
 }
 
@@ -122,6 +182,9 @@ bool Manager::SEARCH_BP_RANGE(string s, string e)
 
 bool Manager::PRINT_BP() 
 {
+	if(bptree->getRoot()==0){
+		printErrorCode(400);
+	}
 	BpTreeNode* cur = bptree->getRoot();
 
 	while(cur->getMostLeftChild()){
@@ -142,9 +205,11 @@ bool Manager::PRINT_BP()
 	return 1;
 }
 
-bool Manager::PRINT_ST() 
+bool Manager::PRINT_ST(int code) 
 {
-
+	if(!stree->printBookData(code)){
+		printErrorCode(500);
+	}
 }
 
 bool Manager::DELETE() 
@@ -153,13 +218,13 @@ bool Manager::DELETE()
 }
 
 void Manager::printErrorCode(int n) {				//ERROR CODE PRINT
-	flog << "=======================" << endl;
-	flog << "ERROR " << n << endl;
+	flog << "========ERROR========" << endl;
+	flog << n << endl;
 	flog << "=======================" << endl << endl;
 }
 
 void Manager::printSuccessCode() {//SUCCESS CODE PRINT 
-	flog << "=======================" << endl;
+	flog << "========LOAD========" << endl;
 	flog << "Success" << endl;
 	flog << "=======================" << endl << endl;
 }

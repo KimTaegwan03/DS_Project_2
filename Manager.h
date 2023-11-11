@@ -12,18 +12,14 @@ private:
 public:
 	Manager(int bpOrder)	//constructor
 	{
-		/* You must fill here */
 		bptree = new BpTree(&flog,bpOrder);
 		stree = new SelectionTree(&flog);
 		cmd = new char[256];
-
-
 	}
 
 
-	~Manager()//destructor
+	~Manager()	//destructor
 	{
-		/* You must fill here */
 		delete bptree;
 		delete stree;
 		delete[] cmd;

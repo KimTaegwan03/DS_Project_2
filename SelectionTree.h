@@ -16,6 +16,7 @@ public:
         this->root = NULL;
         this->fout = fout;
 
+        // Set initial nodes
         SelectionTreeNode* node = new SelectionTreeNode[7];
 
         for(int i = 0;i<3;i++){
@@ -31,12 +32,9 @@ public:
         }
         
         root = &node[0];
-
     }
     ~SelectionTree() {
-        
         delete[] root;
-        
     }
 
     void setRoot(SelectionTreeNode* pN) { this->root = pN; }

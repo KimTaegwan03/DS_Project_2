@@ -2,6 +2,7 @@
 #include <cmath>
 #include <queue>
 
+// After deletion, Heapify recursive from root node
 void LoanBookHeap::heapifyUp(LoanBookHeapNode* pN) {
     if(pN == root) return;
     if(pN->getBookData()->getName() < pN->getParent()->getBookData()->getName()){
@@ -14,6 +15,7 @@ void LoanBookHeap::heapifyUp(LoanBookHeapNode* pN) {
     return;
 }
 
+// After insertion, Heapify recursive from last node
 void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
     if(pN->getLeftChild() == NULL && pN->getRightChild() == NULL) return;
 
@@ -33,8 +35,10 @@ void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
     return;
 }
 
+// Insert data satisfying min heap rule
 bool LoanBookHeap::Insert(LoanBookData* data) {
-    if(!root){
+
+    if(!root){      // No root, just allocate new root and store data
         LoanBookHeapNode* n_root = new LoanBookHeapNode();
         n_root->setBookData(data);
 
@@ -44,26 +48,28 @@ bool LoanBookHeap::Insert(LoanBookData* data) {
 
         return 1;
     }
-    else{
+
+    else{       // 
         LoanBookHeapNode* n_node = new LoanBookHeapNode();
         LoanBookHeapNode* cur = root;
         LoanBookHeapNode* pre = NULL;
 
         n_node->setBookData(data);
         
+        // Finding correct node just using index and binary numbers
         int level = floor(log2(size+1));
         int j = pow(2,level);
-        int dest = (size+1) % j;
+        int dest = (size+1) % j;    // ignore most left 1
         bool flag = 0;
 
         for(int i = 0;i<level;i++){
             j/=2;
             pre = cur;
-            if(dest/j == 1){
+            if(dest/j == 1){        // next number is 1 -> go to right child
                 cur = cur->getRightChild();
                 flag = 1;
             }
-            else{
+            else{                   // next number is 0-> go to left child
                 cur = cur->getLeftChild();
                 flag = 0;
             }
@@ -78,6 +84,7 @@ bool LoanBookHeap::Insert(LoanBookData* data) {
             pre->setLeftChild(n_node);
         }
         
+        // store the data in last node and heapify up
         heapifyUp(n_node);
 
         size++;
@@ -86,12 +93,18 @@ bool LoanBookHeap::Insert(LoanBookData* data) {
     }
 }
 
+// Delete data in root node satisfying min heap rule
 bool LoanBookHeap::Delete(){
+
+    if(!root){
+        return 0;
+    }
 
     if(size == 1){
         delete root->getBookData();
         delete root;
         root = 0;
+        size = 0;
         return 1;
     }
 
@@ -100,6 +113,7 @@ bool LoanBookHeap::Delete(){
     LoanBookHeapNode* cur = root;
     LoanBookHeapNode* pre = NULL;
 
+    // Find node using index and binary numbers
     int level = floor(log2(size));
     int j = pow(2,level);
     int dest = (size) % j;
@@ -119,6 +133,7 @@ bool LoanBookHeap::Delete(){
         dest = dest % j;
     }
 
+    // store data of last node in root node
     root->setBookData(cur->getBookData());
 
     if(pre->getLeftChild() == cur){
@@ -132,20 +147,14 @@ bool LoanBookHeap::Delete(){
 
     size--;
 
+    // heapify from root node
     heapifyDown(root);
 }
 
-void LoanBookHeap::initArr(LoanBookHeapNode** heapArr,LoanBookHeapNode* cur,int index){
-    if(cur){
-        heapArr[index] = cur;
-        initArr(heapArr,cur->getLeftChild(),2*index+1);
-        initArr(heapArr,cur->getRightChild(),2*index+2);
-    }
-}
-
+// Deep copy for printing
 LoanBookHeap* LoanBookHeap::deepCopy(){
     LoanBookHeap* output = new LoanBookHeap();
-    queue<LoanBookHeapNode*> q;
+    queue<LoanBookHeapNode*> q;                     // BFS
     q.push(root);
     while(!q.empty()){
         LoanBookData* n_data = new LoanBookData();

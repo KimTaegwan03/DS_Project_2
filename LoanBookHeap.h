@@ -14,8 +14,9 @@ public:
         this->root = NULL;
         this->size = 0;
     }
-    ~LoanBookHeap() {
-        queue<LoanBookHeapNode*> q;
+    ~LoanBookHeap() {  
+
+        queue<LoanBookHeapNode*> q;     // Disallocate using BFS
         if(root)
             q.push(root);
 
@@ -42,6 +43,5 @@ public:
     bool Insert(LoanBookData* data);
     bool Delete();
 
-    void initArr(LoanBookHeapNode** heapArr,LoanBookHeapNode* cur,int index);
     LoanBookHeap* deepCopy();
 };

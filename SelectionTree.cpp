@@ -1,30 +1,27 @@
 #include "SelectionTree.h"
 #include <cmath>
 
-bool SelectionTree::Insert(LoanBookData* newData) {
-    LoanBookHeap* insert_heap = NULL;
+bool SelectionTree::Insert(LoanBookData* newData) {     // Insert data in heap match the code
+    LoanBookHeap* insert_heap = NULL;                   // if root of heap is changed, Restruct selection tree
 
     insert_heap = &heap[newData->getCode()/100];
-
     insert_heap->Insert(newData);
 
     if(insert_heap->getRoot()->getBookData() == newData){
         reStruct();
     }
-
-
     return 1;
 }
 
-bool SelectionTree::Delete() {
+bool SelectionTree::Delete() {          // Delete data from heap match the code
+    if(!root->getHeap()) return 0;      // Restruct selection tree
+
     root->getHeap()->Delete();
-
     reStruct();
-
     return 1;
 }
 
-bool SelectionTree::printBookData(int bookCode) {
+bool SelectionTree::printBookData(int bookCode) {   // Print all data in heap match the code
     LoanBookHeap* target = &heap[bookCode/100];
 
     int cnt = target->getSize();
@@ -36,8 +33,6 @@ bool SelectionTree::printBookData(int bookCode) {
     *fout<<"========PRINT_ST========\n";
     LoanBookHeap* copy = target->deepCopy();
 
-   
-
     for(int i = 0;i<cnt;i++){
         if(copy->getRoot()->getBookData()->getCode() != 0)
             *fout<< copy->getRoot()->getBookData()->getName() << '/' << copy->getRoot()->getBookData()->getCode() << '/' << copy->getRoot()->getBookData()->getAuthor() << '/' << copy->getRoot()->getBookData()->getYear() << '/' << copy->getRoot()->getBookData()->getLoanCount() <<'\n';
@@ -46,9 +41,6 @@ bool SelectionTree::printBookData(int bookCode) {
         copy->Delete();
     }
     delete copy;
-    // for(int i = 0;i<cnt;i++){
-    //     target->Insert(&dataArr[i]);
-    // }
 
     *fout<<"=========================\n\n";
 
@@ -56,11 +48,11 @@ bool SelectionTree::printBookData(int bookCode) {
     return 1;
 }
 
-void SelectionTree::reStruct(){
+void SelectionTree::reStruct(){     // Restruct Selection tree
     int k = 8;
     int j = 7;
 
-    for(int i = k-1;i>=k/2;i--){
+    for(int i = k-1;i>=k/2;i--){       // Set bottom node
         auto winner = getNode(i);
         if(heap[j].getRoot() && heap[j-1].getRoot()){
             if(heap[j].getRoot()->getBookData()->getName()>heap[j-1].getRoot()->getBookData()->getName()) {
@@ -87,7 +79,7 @@ void SelectionTree::reStruct(){
         j-=2;
     }
 
-    for(int i = k/2-1;i>=1;i--){
+    for(int i = k/2-1;i>=1;i--){    // Set other node
         j = 2*i;
         auto winner_j1 = getNode(j+1);
         auto winner_j = getNode(j);
@@ -96,12 +88,10 @@ void SelectionTree::reStruct(){
             if(winner_j->getBookData()->getName() > winner_j1->getBookData()->getName()) {
                 winner_i->setBookData(winner_j1->getBookData());
                 winner_i->setHeap(winner_j1->getHeap());
-                
             }
             else{
                 winner_i->setBookData(winner_j->getBookData());
                 winner_i->setHeap(winner_j->getHeap());
-                
             }
         }
         else if(winner_j->getHeap()){
@@ -119,11 +109,8 @@ void SelectionTree::reStruct(){
     }
 }
 
-SelectionTreeNode* SelectionTree::getNode(int idx){
-
-    if(idx == 1){
-        return root;
-    }
+SelectionTreeNode* SelectionTree::getNode(int idx){     // Get Node with index using binary numbers
+    if(idx == 1) return root;
 
     SelectionTreeNode* cur = root;
     SelectionTreeNode* pre = NULL;

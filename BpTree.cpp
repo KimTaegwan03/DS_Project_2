@@ -1,6 +1,39 @@
 #include "BpTree.h"
 
 bool BpTree::Insert(LoanBookData* newData,SelectionTree* stree) {
+
+	if(newData->getCode() == 0 && newData->getLoanCount() >= 3){
+		stree->Insert(newData);
+		return 0;
+	}
+	else if(newData->getCode() == 100 && newData->getLoanCount() >= 3){
+		stree->Insert(newData);
+		return 0;
+	}
+	else if(newData->getCode() == 200 && newData->getLoanCount() >= 3){
+		stree->Insert(newData);
+		return 0;
+	}
+	else if(newData->getCode() == 300 && newData->getLoanCount() >= 4){
+		stree->Insert(newData);
+		return 0;
+	}
+	else if(newData->getCode() == 400 && newData->getLoanCount() >= 4){
+		stree->Insert(newData);
+		return 0;
+	}
+	else if(newData->getCode() == 500 && newData->getLoanCount() >= 2){
+		stree->Insert(newData);
+		return 0;
+	}
+	else if(newData->getCode() == 600 && newData->getLoanCount() >= 2){
+		stree->Insert(newData);
+		return 0;
+	}
+	else if(newData->getCode() == 700 && newData->getLoanCount() >= 2){
+		stree->Insert(newData);
+		return 0;
+	}
 	
 	// No root
 	if(!root) {
@@ -74,9 +107,6 @@ bool BpTree::Insert(LoanBookData* newData,SelectionTree* stree) {
 
 	return true;
 }
-
-
-
 
 bool BpTree::Delete(string name){		// BpTree Deletion Function
 	BpTreeNode* pCur = root;
@@ -329,10 +359,10 @@ bool BpTree::searchBook(string name) {		// Search tree with name and print the b
 bool BpTree::searchRange(string start, string end) {		// Search tree with start key and print book datas from start to end
 	BpTreeNode* pCur = root;
 	BpTreeNode* j = NULL;
-	bool flag = 1;
 
 	while(pCur->getMostLeftChild()){
 		j = pCur->getMostLeftChild();
+		bool flag = 1;
 		for(auto iter = pCur->getIndexMap()->begin();iter != pCur->getIndexMap()->end();iter++){
 			if(iter->first[0] >= start[0]){
 				pCur = j;
@@ -347,23 +377,20 @@ bool BpTree::searchRange(string start, string end) {		// Search tree with start 
 		}
 	}
 
-	if(pCur->getDataMap()->begin()->first[0] < start[0]){
+	if(pCur->getDataMap()->begin()->first[0] > end[0]){
 		return 0;
 	}
+
 	*fout<<"========SEARCH_BP========\n";
 	while(pCur){
+		if(pCur->getDataMap()->begin()->first[0] > end[0]) break;
 		for(auto iter = pCur->getDataMap()->begin();iter!=pCur->getDataMap()->end();iter++){
 			if(iter->first[0] >= start[0] && end[0] >= iter->first[0]){
-				flag = 1;
 				if(iter->second->getCode() != 0)
 					*fout<< iter->second->getName() << '/' << iter->second->getCode() << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';
 				else
 					*fout<< iter->second->getName() << '/' << "000" << '/' << iter->second->getAuthor() << '/' << iter->second->getYear() << '/' << iter->second->getLoanCount() <<'\n';
 			
-			}
-			else{
-				*fout<<"==========================\n\n";
-				return 1;
 			}
 		}
 		pCur = pCur->getNext();

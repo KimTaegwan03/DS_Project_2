@@ -37,11 +37,13 @@ public:
 				for(auto i = fr->getIndexMap()->begin();i!=fr->getIndexMap()->end();i++){
 					q.push(i->second);
 				}
+				fr->getIndexMap()->clear();
 			}
 			else{
 				for(auto i = fr->getDataMap()->begin();i!=fr->getDataMap()->end();i++){
 					delete i->second;
 				}
+				fr->getDataMap()->clear();
 			}
 			delete fr;
 			q.pop();

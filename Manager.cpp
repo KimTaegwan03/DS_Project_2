@@ -6,7 +6,7 @@ using namespace std;
 void Manager::run(const char* command) 
 {
 	fin.open(command);
-	flog.open("log.txt");
+	flog.open("log.txt",ios::app);
 	if(!fin)
 	{
 		flog << "File Open Error" << endl;
@@ -20,11 +20,12 @@ void Manager::run(const char* command)
 
 		int cnt = strlen(cmd);
 
-		char* p = strtok(cmd,"\t ");
+		char* p = strtok(cmd,"\t\r ");
 
 		if(!strcmp(p,"LOAD")){			// LOAD command
-			if(!bptree->getRoot())
+			if(!bptree->getRoot()){
 				LOAD();
+			}
 			else
 				printErrorCode(100);
 		}
@@ -73,14 +74,14 @@ void Manager::run(const char* command)
 			PRINT_ST(atoi(p));
 		}
 		else if(!strcmp(p,"DELETE")){	// DELETE command
-			if(stree->Delete())
-				printSuccessCode("DELETE");
-			else
-				printErrorCode(600);
+			DELETE();
 		}
 		else if(!strcmp(p,"EXIT")){		// EXIT command
 			printSuccessCode("EXIT");
 			break;
+		}
+		else{
+			printErrorCode(700);	// Wrong command	
 		}
 	}
 	flog.close();
@@ -203,14 +204,22 @@ bool Manager::PRINT_BP() // Print all book data
 
 bool Manager::PRINT_ST(int code) 	// Print all data in heap match the code
 {
-	if(!stree->printBookData(code)){
+	if(code == 0 || code == 100 || code == 200 || code == 300 || code == 400 || code == 500 || code == 600 || code == 700){
+		if(!stree->printBookData(code)){
+			printErrorCode(500);
+		}
+	}
+	else{
 		printErrorCode(500);
 	}
 }
 
 bool Manager::DELETE() 		// Delete root of selection tree
 {
-	printSuccessCode("DELETE");
+	if(stree->Delete())
+		printSuccessCode("DELETE");
+	else
+		printErrorCode(600);
 }
 
 void Manager::printErrorCode(int n) {				//ERROR CODE PRINT

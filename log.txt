@@ -2,126 +2,259 @@
 Success
 =======================
 
-========SEARCH_BP========
-a/500/abcd/2022/1
-ab/500/abcd/2022/1
-b/500/abcd/2022/1
-bc/500/abcd/2022/1
-c/500/abcd/2022/1
-cd/500/abcd/2022/1
-d/500/abcd/2022/1
-de/500/abcd/2022/1
-e/500/abcd/2022/1
-ef/500/abcd/2022/1
-f/500/abcd/2022/1
-fg/500/abcd/2022/1
-g/500/abcd/2022/1
-gh/500/abcd/2022/1
-h/500/abcd/2022/1
-hi/500/abcd/2022/1
-==========================
-
-========ADD========
-de/500/abcd/2022
-====================
-
-========ADD========
-ef/500/abcd/2022
-====================
-
-========ADD========
-d/500/abcd/2022
-====================
-
-========ADD========
-f/500/abcd/2022
-====================
-
-========ADD========
-hi/500/abcd/2022
-====================
-
-========ADD========
-gh/500/abcd/2022
-====================
-
-========ADD========
-ab/500/abcd/2022
-====================
-
-========ADD========
-g/500/abcd/2022
-====================
-
-========ADD========
-cd/500/abcd/2022
-====================
-
-========ADD========
-c/500/abcd/2022
-====================
-
-========ADD========
-fg/500/abcd/2022
-====================
-
-========ADD========
-a/500/abcd/2022
-====================
-
-========ADD========
-bc/500/abcd/2022
-====================
-
 ========PRINT_BP========
-b/500/abcd/2022/1
-e/500/abcd/2022/1
-h/500/abcd/2022/1
+brave new world/100/Joseph Conrad/1995/1
+don quixote/200/Miguel de Cervantes/1971/1
+dracula/200/Charles Dickens/1915/1
+emma/300/George Orwell/1977/1
+frankenstein/600/Charlotte Bront/2010/1
+great expectations/400/George Orwell/1915/1
+heart of darkness/200/Anthony Burgess/1976/1
+jane eyre/600/Anthony Burgess/1924/1
+little women/300/Oscar Wilde/2005/1
+lolita/500/George Orwell/1922/1
+madame bovary/100/Victor Hugo/1947/1
+moby dick/000/Herman Melville/1851/1
+pride and prejudice/700/Charlotte Bront?/1998/1
+sense and sensibility/500/Anthony Burgess/1959/1
+slaughterhouse-five/100/J.R.R. Tolkien/2006/1
+the adventures of huckleberry Finn/700/J.R.R. Tolkien/2017/1
+the great gatsby/300/J.R.R. Tolkien/1931/1
+the odyssey/600/Bram Stoker/1908/1
+the picture of dorian gray/500/Charles Dickens/1940/1
+to kill a mockingbird/700/Harper Lee/1913/1
+war and peace/600/Miguel de Cervantes/1953/1
+wuthering heights/400/Bram Stoker/1997/1
 ========================
 
+========ERROR========
+300
+=======================
+
+========SEARCH_BP========
+brave new world/100/Joseph Conrad/1995/1
+don quixote/200/Miguel de Cervantes/1971/1
+dracula/200/Charles Dickens/1915/1
+emma/300/George Orwell/1977/1
+==========================
+
+========SEARCH_BP========
+brave new world/100/Joseph Conrad/1995/1
+don quixote/200/Miguel de Cervantes/1971/1
+dracula/200/Charles Dickens/1915/1
+emma/300/George Orwell/1977/1
+frankenstein/600/Charlotte Bront/2010/1
+great expectations/400/George Orwell/1915/1
+heart of darkness/200/Anthony Burgess/1976/1
+jane eyre/600/Anthony Burgess/1924/1
+little women/300/Oscar Wilde/2005/1
+lolita/500/George Orwell/1922/1
+madame bovary/100/Victor Hugo/1947/1
+moby dick/000/Herman Melville/1851/1
+pride and prejudice/700/Charlotte Bront?/1998/1
+sense and sensibility/500/Anthony Burgess/1959/1
+slaughterhouse-five/100/J.R.R. Tolkien/2006/1
+the adventures of huckleberry Finn/700/J.R.R. Tolkien/2017/1
+the great gatsby/300/J.R.R. Tolkien/1931/1
+the odyssey/600/Bram Stoker/1908/1
+the picture of dorian gray/500/Charles Dickens/1940/1
+to kill a mockingbird/700/Harper Lee/1913/1
+war and peace/600/Miguel de Cervantes/1953/1
+wuthering heights/400/Bram Stoker/1997/1
+==========================
+
+========SEARCH_BP========
+pride and prejudice/700/Charlotte Bront?/1998/1
+==========================
+
+========ERROR========
+300
+=======================
+
+========ERROR========
+300
+=======================
+
+========ADD========
+great expectations/400/George Orwell/1915
+====================
+
+========ADD========
+great expectations/400/George Orwell/1915
+====================
+
+========ADD========
+great expectations/400/George Orwell/1915
+====================
+
+========ADD========
+madame bovary/100/Victor Hugo/1947
+====================
+
+========ADD========
+madame bovary/100/Victor Hugo/1947
+====================
+
 ========PRINT_ST========
-a/500/abcd/2022/2
-ab/500/abcd/2022/2
-bc/500/abcd/2022/2
-c/500/abcd/2022/2
-cd/500/abcd/2022/2
-d/500/abcd/2022/2
-de/500/abcd/2022/2
-ef/500/abcd/2022/2
-f/500/abcd/2022/2
-fg/500/abcd/2022/2
-g/500/abcd/2022/2
-gh/500/abcd/2022/2
-hi/500/abcd/2022/2
+great expectations/400/George Orwell/1915/4
+=========================
+
+========PRINT_ST========
+madame bovary/100/Victor Hugo/1947/3
 =========================
 
 ========DELETE========
 Success
 =======================
 
-========DELETE========
-Success
-=======================
+========ADD========
+moby dick/000/Herman Melville/1851
+====================
 
-========DELETE========
-Success
-=======================
+========ADD========
+moby dick/000/Herman Melville/1851
+====================
 
-========DELETE========
-Success
+========ADD========
+brave new world/100/Joseph Conrad/1995
+====================
+
+========ADD========
+brave new world/100/Joseph Conrad/1995
+====================
+
+========ADD========
+heart of darkness/200/Anthony Burgess/1976
+====================
+
+========ADD========
+heart of darkness/200/Anthony Burgess/1976
+====================
+
+========ADD========
+little women/300/Oscar Wilde/2005
+====================
+
+========ADD========
+little women/300/Oscar Wilde/2005
+====================
+
+========ADD========
+little women/300/Oscar Wilde/2005
+====================
+
+========ADD========
+lolita/500/George Orwell/1922
+====================
+
+========ADD========
+frankenstein/600/Charlotte Bront?/2010
+====================
+
+========ADD========
+to kill a mockingbird/700/Harper Lee/1913
+====================
+
+========PRINT_ST========
+moby dick/000/Herman Melville/1851/3
+=========================
+
+========PRINT_ST========
+brave new world/100/Joseph Conrad/1995/3
+madame bovary/100/Victor Hugo/1947/3
+=========================
+
+========PRINT_ST========
+heart of darkness/200/Anthony Burgess/1976/3
+=========================
+
+========PRINT_ST========
+little women/300/Oscar Wilde/2005/4
+=========================
+
+========ERROR========
+500
 =======================
 
 ========PRINT_ST========
-cd/500/abcd/2022/2
-d/500/abcd/2022/2
-de/500/abcd/2022/2
-ef/500/abcd/2022/2
-f/500/abcd/2022/2
-fg/500/abcd/2022/2
-g/500/abcd/2022/2
-gh/500/abcd/2022/2
-hi/500/abcd/2022/2
+lolita/500/George Orwell/1922/2
 =========================
+
+========PRINT_ST========
+frankenstein/600/Charlotte Bront/2010/2
+=========================
+
+========PRINT_ST========
+to kill a mockingbird/700/Harper Lee/1913/2
+=========================
+
+========ERROR========
+500
+=======================
+
+========DELETE========
+Success
+=======================
+
+========DELETE========
+Success
+=======================
+
+========DELETE========
+Success
+=======================
+
+========DELETE========
+Success
+=======================
+
+========DELETE========
+Success
+=======================
+
+========DELETE========
+Success
+=======================
+
+========DELETE========
+Success
+=======================
+
+========DELETE========
+Success
+=======================
+
+========ERROR========
+600
+=======================
+
+========ERROR========
+500
+=======================
+
+========ERROR========
+500
+=======================
+
+========ERROR========
+500
+=======================
+
+========ERROR========
+500
+=======================
+
+========ERROR========
+500
+=======================
+
+========ERROR========
+500
+=======================
+
+========ERROR========
+500
+=======================
 
 ========ERROR========
 500
